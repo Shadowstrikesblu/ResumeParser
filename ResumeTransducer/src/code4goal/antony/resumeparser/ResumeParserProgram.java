@@ -12,6 +12,8 @@ import gate.Factory;
 import gate.creole.SerialAnalyserController;
 import static gate.Utils.*;
 
+import java.awt.Desktop;  
+import java.io.*;  
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -83,6 +85,30 @@ public class ResumeParserProgram {
 			stream.close();
 		}
 	}
+	public class OpenFileExample1   
+	{  
+		public static void main(String[] args)   
+		{  
+			try  
+			{  
+				//constructor of file class having file as argument  
+				File file = outputFileName;   
+				if(!Desktop.isDesktopSupported())//check if Desktop is supported by Platform or not  
+				{  
+					System.out.println("not supported");  
+					return;  
+				}  
+				System.out.println("File is opening");
+				Desktop desktop = Desktop.getDesktop();  
+				if(file.exists())         //checks file exists or not  
+					desktop.open(file);              //opens the specified file  
+			}  
+			catch(Exception e)  
+			{  
+				e.printStackTrace();  
+			}  
+		}  
+	}  
 
 	public static JSONObject loadGateAndAnnie(File file) throws GateException,
 			IOException {
@@ -287,4 +313,5 @@ public class ResumeParserProgram {
 			e.printStackTrace();
 		}
 	}
+
 }
